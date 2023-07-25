@@ -14,7 +14,10 @@ public class Main {
 
         String InS = sc.nextLine();
         String[] X = InS.split(" ");
-
+        if (X.length != 3) {
+            System.out.println("Не корректный формат");
+            System.exit(0);
+        }
         if (inArray(X[0]) == "num" && inArray(X[2]) == "num") {
             switch (X[1]) {
                 case "+": System.out.println((Integer.parseInt(X[0]) + Integer.parseInt(X[2]))); break;
@@ -38,7 +41,7 @@ public class Main {
 
 
     }
-    //Метод преобразования арабских символов в обычные
+    //Метод преобразования римских символов в обычные
     //"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII",
     //"XII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"
     public static int Anum(String S) {
@@ -84,21 +87,21 @@ public class Main {
         return "err";
     }
 
-    //Метод перевода инты в арабикан
+    //Метод перевода арабикан в римские
     public static String intArb(int I) {
-        if (I < 0) return "В римских цифрах нет нуля или отрицательных чисел";
+        if (I <= 0) return "В римских цифрах нет нуля или отрицательных чисел";
 
         String[] O = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
         String[] T = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
         String[] H = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
         String[] F = {"", "M", "MM", "MMM", "MMMM"};
 
-        String t = F[I / 1000];
+        String f = F[I / 1000];
         String h = H[I / 100 % 10];
-        String te = T[I / 10 % 10];
+        String t = T[I / 10 % 10];
         String o =  O[I % 10];
 
-        return t+h+te+o;
+        return f+h+t+o;
 
 
     }
